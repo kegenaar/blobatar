@@ -89,9 +89,11 @@ const ENTRIES: {
   // ten keys that minification cannot mangle.
     // Raised for `backgroundColor` (the core cost, plus a little where the adapter
     // forwards the prop) — see "blob only" in core's `scripts/size.ts`.
-    // Raised from 5480 for seasons, likewise.
+    // Raised from 5480 by 65 B for `defs` and `paint` (the core cost, plus the props forwarded
+    // where the adapter takes them) — see "blob only" in core's `scripts/size.ts`.
+    // Raised from 5545 by 95 B for seasons, likewise.
     name: "@blobatar/react",
-    budget: 5575,
+    budget: 5640,
     external: ["react"],
     source: `import { Blobatar } from "@blobatar/react";
              globalThis.x = Blobatar;`,
@@ -117,9 +119,11 @@ const ENTRIES: {
   // ten keys that minification cannot mangle.
     // Raised for `backgroundColor` (the core cost, plus a little where the adapter
     // forwards the prop) — see "blob only" in core's `scripts/size.ts`.
-    // Raised from 5480 for seasons, likewise.
+    // Raised from 5480 by 65 B for `defs` and `paint` (the core cost, plus the props forwarded
+    // where the adapter takes them) — see "blob only" in core's `scripts/size.ts`.
+    // Raised from 5545 by 90 B for seasons, likewise.
     name: "blobatar/react",
-    budget: 5570,
+    budget: 5635,
     external: ["react"],
     source: `import { Blobatar } from "blobatar/react";
              globalThis.x = Blobatar;`,
@@ -139,9 +143,11 @@ const ENTRIES: {
   // ten keys that minification cannot mangle.
     // Raised for `backgroundColor` (the core cost, plus a little where the adapter
     // forwards the prop) — see "blob only" in core's `scripts/size.ts`.
-    // Raised from 5680 for seasons, likewise.
+    // Raised from 5680 by 75 B for `defs` and `paint` (the core cost, plus the props forwarded
+    // where the adapter takes them) — see "blob only" in core's `scripts/size.ts`.
+    // Raised from 5755 by 95 B for seasons, likewise.
     name: "@blobatar/vue",
-    budget: 5775,
+    budget: 5850,
     external: ["vue"],
     ext: "ts",
     source: `import { Blobatar } from "@blobatar/vue";
@@ -158,9 +164,11 @@ const ENTRIES: {
   // ten keys that minification cannot mangle.
     // Raised for `backgroundColor` (the core cost, plus a little where the adapter
     // forwards the prop) — see "blob only" in core's `scripts/size.ts`.
-    // Raised from 5670 for seasons, likewise.
+    // Raised from 5670 by 80 B for `defs` and `paint` (the core cost, plus the props forwarded
+    // where the adapter takes them) — see "blob only" in core's `scripts/size.ts`.
+    // Raised from 5750 by 95 B for seasons, likewise.
     name: "blobatar/vue",
-    budget: 5765,
+    budget: 5845,
     external: ["vue"],
     ext: "ts",
     source: `import { Blobatar } from "blobatar/vue";
@@ -180,9 +188,11 @@ const ENTRIES: {
     // one. `@blobatar/solid alone` carries the same 17 B.
     // Raised for `backgroundColor` (the core cost, plus a little where the adapter
     // forwards the prop) — see "blob only" in core's `scripts/size.ts`.
-    // Raised from 6700 for seasons, likewise.
+    // Raised from 6700 by 85 B for `defs` and `paint` (the core cost, plus the props forwarded
+    // where the adapter takes them) — see "blob only" in core's `scripts/size.ts`.
+    // Raised from 6785 by 100 B for seasons, likewise.
     name: "@blobatar/solid",
-    budget: 6800,
+    budget: 6885,
     external: ["solid-js", "solid-js/web"],
     ext: "tsx",
     source: `import { Blobatar } from "@blobatar/solid";
@@ -197,9 +207,11 @@ const ENTRIES: {
     // the component sees them.
     // Raised for `backgroundColor` (the core cost, plus a little where the adapter
     // forwards the prop) — see "blob only" in core's `scripts/size.ts`.
-    // Raised from 6300 for seasons, likewise.
+    // Raised from 6300 by 75 B for `defs` and `paint` (the core cost, plus the props forwarded
+    // where the adapter takes them) — see "blob only" in core's `scripts/size.ts`.
+    // Raised from 6375 by 95 B for seasons, likewise.
     name: "@blobatar/preact",
-    budget: 6395,
+    budget: 6470,
     external: ["preact", "preact/hooks", "preact/jsx-runtime"],
     ext: "tsx",
     source: `import { Blobatar } from "@blobatar/preact";
@@ -240,9 +252,11 @@ const ENTRIES: {
     // not.
     // Raised for `backgroundColor` (the core cost, plus a little where the adapter
     // forwards the prop) — see "blob only" in core's `scripts/size.ts`.
-    // Raised from 5190 for seasons, likewise.
+    // Raised from 5190 by 50 B for `defs` and `paint`: the core cost alone. This adapter does
+    // not take them (no markup to put them in) — see "blob only" in core's `scripts/size.ts`.
+    // Raised from 5240 by 120 B for seasons, likewise.
     name: "@blobatar/react-native",
-    budget: 5310,
+    budget: 5360,
     external: ["react", "react/jsx-runtime", "react-native", "react-native-svg"],
     ext: "tsx",
     source: `import { Blobatar } from "@blobatar/react-native";
@@ -282,9 +296,11 @@ const ENTRIES: {
     // which is why this lives behind `/animated` rather than at the root.
     // Raised for `backgroundColor` (the core cost, plus a little where the adapter
     // forwards the prop) — see "blob only" in core's `scripts/size.ts`.
-    // Raised from 10_370 for seasons, likewise, plus `Costume` and the fit wrapper.
+    // Raised from 10_370 by 55 B for `defs` and `paint`: the core cost alone. This adapter does
+    // not take them (no markup to put them in) — see "blob only" in core's `scripts/size.ts`.
+    // Raised from 10_425 by 250 B for seasons, likewise, plus `Costume` and the fit wrapper.
     name: "@blobatar/react-native animated",
-    budget: 10_620,
+    budget: 10_675,
     // Reanimated and worklets are external for the reason the native modules
     // already here are: they are a JavaScript half bolted to a native half that
     // the consumer's app links once. Their bytes are not this package's to
@@ -326,9 +342,11 @@ const ENTRIES: {
     // than 170 B. The alternative was measured, not assumed.
     // Raised for `backgroundColor` (the core cost, plus a little where the adapter
     // forwards the prop) — see "blob only" in core's `scripts/size.ts`.
-    // Raised from 6290 for seasons, likewise, plus `Costume` and the fit wrapper.
+    // Raised from 6290 by 50 B for `defs` and `paint`: the core cost alone. This adapter does
+    // not take them (no markup to put them in) — see "blob only" in core's `scripts/size.ts`.
+    // Raised from 6340 by 210 B for seasons, likewise, plus `Costume` and the fit wrapper.
     name: "@blobatar/react-native morph",
-    budget: 6500,
+    budget: 6550,
     external: ["react", "react/jsx-runtime", "react-native", "react-native-svg"],
     ext: "tsx",
     source: `import { MorphingBlobatar } from "@blobatar/react-native";
@@ -469,8 +487,10 @@ const ENTRIES: {
   // magnitude, not by tens of bytes.
   {
     // 996 B measured.
+    // Raised from 1030 by 20 B for `defs` and `paint`, the two props the adapter now
+    // forwards — see "blob only" in core's `scripts/size.ts`.
     name: "@blobatar/solid alone",
-    budget: 1030,
+    budget: 1050,
     external: ["solid-js", "solid-js/web", "blobatar", "blobatar/internal", "blobatar/uri"],
     ext: "tsx",
     source: `import { Blobatar } from "@blobatar/solid";
@@ -491,8 +511,10 @@ const ENTRIES: {
   },
   {
     // 570 B measured.
+    // Raised from 600 by 15 B for `defs` and `paint`, the two props the adapter now
+    // forwards — see "blob only" in core's `scripts/size.ts`.
     name: "@blobatar/preact alone",
-    budget: 600,
+    budget: 615,
     external: ["preact", "preact/hooks", "preact/jsx-runtime", "blobatar", "blobatar/internal", "blobatar/uri"],
     ext: "tsx",
     source: `import { Blobatar } from "@blobatar/preact";

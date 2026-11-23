@@ -93,11 +93,17 @@ const ENTRIES: {
     // since nothing else in the core reaches the OKLab decode. Every entry
     // below that renders carries the same bytes for the same reason.
     //
-    // Raised from 4480 by 90 B for seasons (measured +93): the `season` option
+    // Raised from 4480 by 50 B for `defs` and `paint`: the `<defs>` wrapper around a
+    // caller's markup, and the body's paint swapped in after the tint, each written
+    // once and used by both `makeBlobatar` and `makeParts`, plus `--mo-head` taking
+    // the paint ahead of the tinted color. Every entry below that renders carries
+    // the same bytes for the same reason.
+    //
+    // Raised from 4530 by 90 B for seasons (measured +93): the `season` option
     // reaching `resolve`, `dress` and the costume's slot in `render`. The
     // drawing lives on the season value; see "blob + halloween".
     name: "blob only",
-    budget: 4570,
+    budget: 4620,
     external: [] as string[],
     source: `import { blobatar } from "../../src/blob";
              globalThis.x = blobatar(String(globalThis.seed));`,
@@ -105,17 +111,17 @@ const ENTRIES: {
   {
     // The barrel. Costs more than `blob only` above because it also carries the
     // colour and trait utilities, which a consumer who only renders never touches.
-    // Raised from 4470 by 90 B for seasons — see "blob only".
+    // Raised from 4520 by 90 B for seasons — see "blob only".
     name: "barrel",
-    budget: 4560,
+    budget: 4610,
     external: [],
     source: `import { blobatar } from "../../src/index";
              globalThis.x = blobatar(String(globalThis.seed));`,
   },
   {
-    // Raised from 4570 by 90 B for seasons — see "blob only".
+    // Raised from 4620 by 90 B for seasons — see "blob only".
     name: "uri",
-    budget: 4660,
+    budget: 4710,
     external: [],
     source: `import { blobatarUri } from "../../src/uri";
              globalThis.x = blobatarUri(String(globalThis.seed));`,
@@ -140,9 +146,12 @@ const ENTRIES: {
     // correct — a `var()` with nothing behind it makes `fill` inherit black.
     //
     // Raised from 5370 by 120 B for `backgroundColor` — see "blob only".
-    // Raised from 5490 by 90 B for seasons — see "blob only".
+    //
+    // Raised from 5490 by 65 B for `defs` and `paint` — see "blob only" — plus the
+    // two props named in the component's destructure and in the options it builds.
+    // Raised from 5555 by 90 B for seasons — see "blob only".
     name: "react",
-    budget: 5580,
+    budget: 5645,
     external: ["react"],
     source: `import { Blobatar } from "../../src/react";
              globalThis.x = Blobatar;`,
@@ -153,9 +162,9 @@ const ENTRIES: {
     // above — the delta is what a single pose actually costs.
     // Measured: +343 B for the first expression (the shared serializer and bake,
     // paid once) and +36 B for each one after it. Importing all three is 4098.
-    // Raised from 4810 by 90 B for seasons — see "blob only".
+    // Raised from 4860 by 90 B for seasons — see "blob only".
     name: "blob + happy",
-    budget: 4900,
+    budget: 4950,
     external: [],
     source: `import { blobatar } from "../../src/blob";
              import { happy } from "../../src/expression";
@@ -166,8 +175,10 @@ const ENTRIES: {
     // what a costume costs. Measured: 6107, ~1.6 KB for the serializer,
     // `frame()`, the pumpkin and ghost marks (`edge()` is ~230 B of that) and
     // `fadeHex`.
+    // Raised from 6150 by 50 B for `defs` and `paint`, which reach it through
+    // "blob only" like every other entry that renders.
     name: "blob + halloween",
-    budget: 6150,
+    budget: 6200,
     external: [],
     source: `import { blobatar } from "../../src/blob";
              import { halloween } from "../../src/seasonal";
@@ -194,9 +205,12 @@ const ENTRIES: {
     //
     // Raised from 5650 by 70 B for `backgroundColor` — see "blob only" — plus
     // the runtime prop declaration, keeping the slack described above.
-    // Raised from 5720 by 110 B for seasons, likewise.
+    //
+    // Raised from 5720 by 75 B for `defs` and `paint` — see "blob only" — plus the
+    // two runtime prop declarations and their lines in the options object.
+    // Raised from 5795 by 110 B for seasons, likewise.
     name: "vue",
-    budget: 5830,
+    budget: 5905,
     external: ["vue"],
     source: `import { Blobatar } from "../../src/vue";
              globalThis.x = Blobatar;`,
